@@ -7,7 +7,6 @@
   when: server_user != "root"
 
 - include: force_ssh_authentication.yml
-  when: force_ssh_authentication is defined and force_ssh_authentication
 
 - include: setup_unattended_upgrades.yml
   when: enable_unattended_upgrades is defined and enable_unattended_upgrades
