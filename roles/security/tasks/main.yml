@@ -3,7 +3,7 @@
 - name: "checking env file env = {{ env }}"
   assert:
     that:
-      - env # enforce usage of env variable
+      - env != "" # enforce usage of env variable
 
 - include: perform_aptitude_dist_upgrade.yml
   when: perform_aptitude_dist_upgrade is defined and perform_aptitude_dist_upgrade
