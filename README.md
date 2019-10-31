@@ -104,7 +104,7 @@ in `roles/web/tasks/install_additional_packages.yml`.
 Type this command from the project root directory:
 
 ```
-vagrant up
+PROJECT_NAME="myproject" vagrant up
 ```
 
 (To use Docker instead of VirtualBox, add the flag `--provider=docker` to the
@@ -112,7 +112,7 @@ command above. Note that extra configuration may be required first on your host
 for Docker to run systemd in a container.)
 
 Wait a few minutes for the magic to happen. Access the app by going to this
-URL: [https://my-cool-app.local](https://my-cool-app.local)
+URL: [https://myproject.local](https://myproject.local)
 
 Yup, exactly, you just provisioned a completely new server and deployed an
 entire Django stack in 5 minutes with _two words_ :).

@@ -4,22 +4,24 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
+project_name   = ENV["PROJECT_NAME"]
+
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/bionic64"
   config.ssh.forward_agent = false
-  config.vm.define "my-cool-app.local", primary: true do |app|
-    app.vm.hostname = "my-cool-app"
+  config.vm.define "#{project_name}.local", primary: true do |app|
+    app.vm.hostname = project_name
     app.vm.network "private_network", type: "dhcp"
   end
 
   config.vm.provider "virtualbox" do |vb|
-    vb.customize ["modifyvm", :id, "--name", "MyCoolApp", "--memory", "1024"]
+    vb.customize ["modifyvm", :id, "--name", project_name, "--memory", "1024"]
   end
 
   config.vm.provider "docker" do |d, override|
     override.vm.box = nil
 
-    d.name = "MyCoolApp"
+    d.name = project_name
     d.build_dir = "docker"
     d.create_args = ["--publish-all", "--security-opt=seccomp:unconfined",
                      "--tmpfs=/run", "--tmpfs=/run/lock", "--tmpfs=/tmp",
