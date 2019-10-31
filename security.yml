@@ -8,8 +8,8 @@
   vars:
     - update_apt_cache: true
   vars_files:
-    - env_vars/{{ env }}.yml
     - roles/base/defaults/main.yml
+    - env_vars/{{ env }}.yml
 
   roles:
     - security
