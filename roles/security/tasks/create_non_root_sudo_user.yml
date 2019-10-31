@@ -7,10 +7,7 @@
   apt: name=sudo update_cache={{ update_apt_cache }} state=present cache_valid_time=86400
 
 - name: Add user to sudoers
-  lineinfile: dest=/etc/sudoers
-              regexp="{{ server_user }} ALL"
-              line="{{ server_user }} ALL=(ALL) NOPASSWD: ALL"
-              state=present
+  lineinfile: 'dest=/etc/sudoers regexp="{{ server_user }} ALL" line="{{ server_user }} ALL=(ALL) NOPASSWD: ALL" state=present'
 
 - name: Limit su access to sudo group
   command: dpkg-statoverride --update --add root sudo 4750 /bin/su
