@@ -11,3 +11,9 @@ vagrant_ansible_inventory_default
 
 # Python
 *.pyc
+
+env_vars/*
+!env_vars/example.yml
+
+per_project/*
+!per_project/example

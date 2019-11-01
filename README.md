@@ -2,7 +2,41 @@
 ansible-django-stack
 ====================
 
-[![Build Status](https://travis-ci.org/jcalazan/ansible-django-stack.svg?branch=master)](https://travis-ci.org/jcalazan/ansible-django-stack)
+*Note*: Compared to the [parent](https://github.com/jcalazan/ansible-django-stack), this fork makes some assumptions about
+the setup and hense some variables are removed. Some parts of readme are also
+remove, but it's not to hide the relation, but to reflect changes.
+
+For example:
+
+- No password for sudo
+- Only letsencrypt for https
+- Only https exposed
+- We don't have defaults, every environment is ment to be a separate project with
+  separate servers, so it should contain all the vars in it, no inheritance
+- Keys are specified per environment, no default
+- root user if forbidden
+- anything project specific is removed/changed
+
+General idea is to make this suite to work with django-cookiecutter out of the box.
+
+Breaking changes expected, use on your own risk.
+
+## Variables
+
+Check [example.yml](env_vars/example.yml) and [per_project/example](per_project/example) files
+for configuration and hosts respectively. Please review the files and copy them for your project
+
+## First things first
+
+Contrary to parent this fork assumes that security playbook is run before anything else.
+
+```
+ansible-playbook -i example security.yml
+```
+
+You see example everywhere and it's not a coincidence
+
+## Official intro
 
 Ansible Playbook designed for environments running a Django app.
 It can install and configure these applications that are commonly used in
@@ -22,8 +56,6 @@ Environment-specific settings are in the `env_vars` directory.
 
 A `certbot` role is also included for automatically generating and renewing
 trusted SSL certificates with [Let's Encrypt][lets-encrypt].
-
-**Tested with OS:** Ubuntu 18.04 LTS (64-bit), Ubuntu 16.04 LTS (64-bit).
 
 **Tested with Cloud Providers:** [Digital Ocean][digital-ocean], [AWS][aws], [Rackspace][rackspace]
 
@@ -56,12 +88,6 @@ sudo apt-get update
 ```
 
 ### Configuring your application
-
-The main settings to change are in the [`env_vars/base.yml`](env_vars/base.yml)
-file, where you can configure the location of your Git project, the project
-name, and the application name which will be used throughout the Ansible
-configuration. I set some default values based on my open-source app, [YouTube
-Audio Downloader][youtube-audio-dl].
 
 Note that the default values in the playbooks assume that your project
 structure looks something like this:
@@ -393,20 +419,6 @@ running daily.
 - [Setting up Django with Nginx, Gunicorn, virtualenv, supervisor and PostgreSQL][michal-ansible_guide]
 - [How to deploy encrypted copies of your SSL keys and other files with Ansible and OpenSSL][deploy-encrypted-copies]
 - [Using SSH agent forwarding - GitHub developer guide](https://developer.github.com/guides/using-ssh-agent-forwarding/)
-
-## Contributing
-
-Contributions are welcome! Please make sure any PR passes the TravisCI test suite.
-
-### Running the test suite locally:
-
-The test suite uses a Docker container - make sure Docker is installed and
-configured before running the following commands:
-
-```
-pip install -r requirements-dev.txt
-molecule test
-```
 
 [aws]: https://aws.amazon.com
 [digital-ocean]: https://www.digitalocean.com/?refcode=5aa134a379d7

@@ -1,0 +1,8 @@
+[all:vars]
+env=example
+
+[webservers]
+example.com nginx_use_letsencrypt=true
+
+[dbservers]
+example.com

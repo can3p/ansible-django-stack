@@ -3,21 +3,47 @@
 - name: "checking env file env = {{ env }}"
   assert:
     that:
-      - env != "" # enforce usage of env variable
+      - server_user != "root" # enforce usage of env variable
 
-- include: perform_aptitude_dist_upgrade.yml
-  when: perform_aptitude_dist_upgrade is defined and perform_aptitude_dist_upgrade
+  # all this trickery is to make an idempotent operation
+  # It'll be a server with existing user, and we will login with server_user
+  # Otherwise this test will fail, we will login with root to create the user
+  # Inspiration:
+  #  - https://stackoverflow.com/questions/39698067/ansible-check-if-my-user-exists-on-remote-host-else-use-root-user-to-connect-w/39699075#39699075
+  #  - https://serverfault.com/questions/840156/create-non-root-user-and-disable-root-ssh-in-ansible
+- name: "Test connection as {{ server_user }} user"
+  sudo: no
+  local_action: "command ssh -q -o BatchMode=yes -o ConnectTimeout=3 {{ server_user }}@{{ inventory_hostname }} 'echo ok'"
+  register: test_user
+  ignore_errors: yes
+  changed_when: false
 
 - include: create_non_root_sudo_user.yml
-  when: server_user != "root"
+  remote_user: "{{ test_user | success | ternary(omit, 'root') }}"
+  when: test_user is failed
+
+  # we disabled facts gathering at security.yml
+  # I don't know for sure, but we probably need to run it anyway for subsequent tasks
+- name: "Gather facts anyway"
+  remote_user: "{{ test_user | success | ternary(omit, 'root') }}"
+  setup:
+    gather_subset: "all"
+
+- include: perform_aptitude_dist_upgrade.yml
+  remote_user: "{{ test_user | success | ternary(omit, 'root') }}"
+  when: perform_aptitude_dist_upgrade is defined and perform_aptitude_dist_upgrade
 
 - include: force_ssh_authentication.yml
+  remote_user: "{{ test_user | success | ternary(omit, 'root') }}"
 
 - include: setup_unattended_upgrades.yml
+  remote_user: "{{ test_user | success | ternary(omit, 'root') }}"
   when: enable_unattended_upgrades is defined and enable_unattended_upgrades
 
 - include: setup_uncomplicated_firewall.yml
+  remote_user: "{{ test_user | success | ternary(omit, 'root') }}"
   when: enable_ufw is defined and enable_ufw
 
 - include: setup_fail2ban.yml
+  remote_user: "{{ test_user | success | ternary(omit, 'root') }}"
   when: enable_fail2ban is defined and enable_fail2ban

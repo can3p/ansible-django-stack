@@ -4,7 +4,8 @@
   hosts: all
   become: true
   become_user: root
-  remote_user: root
+  remote_user: "{{ server_user }}"
+  gather_facts: no # disable to allow user setup
   vars:
     - update_apt_cache: true
   vars_files:
