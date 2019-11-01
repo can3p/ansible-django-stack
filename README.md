@@ -16,6 +16,7 @@ For example:
 - Keys are specified per environment, no default
 - root user if forbidden
 - anything project specific is removed/changed
+- site host is separate from inventory hostname
 
 General idea is to make this suite to work with django-cookiecutter out of the box.
 

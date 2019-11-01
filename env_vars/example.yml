@@ -4,6 +4,7 @@ server_user: example_user # a server user to install with security playbook
 user_public_keys:
   - ~/.ssh/example_rsa.pub # keys for ssh access
 
+site_host: example.com
 certbot_admin_email: example@gmail.com # general
 git_repo: https://github.com/example/example.com.git # per project
 
