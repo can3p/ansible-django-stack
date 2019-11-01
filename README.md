@@ -314,6 +314,12 @@ A few notes here:
 
 You can then provision the entire site with this command:
 
+Psql access on the db box:
+
+```
+$ PGPASSWORD=password psql -h localhost -U techaroundme
+```
+
 ```
 ansible-playbook -i development site.yml [-K]
 ```
