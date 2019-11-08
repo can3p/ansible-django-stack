@@ -17,8 +17,8 @@ For example:
 - root user if forbidden
 - anything project specific is removed/changed
 - site host is separate from inventory hostname
-
-General idea is to make this suite to work with django-cookiecutter out of the box.
+- superuser is automatically created
+- Runs django cookiecutter (didn't check with a clean setup)
 
 Breaking changes expected, use on your own risk.
 
