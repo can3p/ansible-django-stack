@@ -1,6 +1,6 @@
 ---
 
-- name: Provision a {{ application_name }} web server
+- name: Provision a web server
   hosts: webservers
   become: true
   become_user: root

@@ -1,5 +1,9 @@
 ---
 
+- debug:
+    msg: "Webserver role is {{ application_name }}"
+  tags: always
+
 - include: install_additional_packages.yml
   tags: packages
 
