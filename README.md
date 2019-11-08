@@ -318,7 +318,7 @@ You can then provision the entire site with this command:
 Psql access on the db box:
 
 ```
-$ PGPASSWORD=password psql -h localhost -U techaroundme
+$ PGPASSWORD=password psql -h localhost -U dbname
 ```
 
 ```
