@@ -15,6 +15,7 @@
     - certbot
     - redis
     - rabbitmq
+    - node
     - web
     - celery
     - nginx
