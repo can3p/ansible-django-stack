@@ -147,3 +147,7 @@ $ PGPASSWORD=password psql -h localhost -U dbname
 
 
 [securing-ubuntu]: https://www.codelitt.com/blog/my-first-10-minutes-on-a-server-primer-for-securing-ubuntu/
+
+## Credits
+
+Nothing would be possible without fantastic parent project: https://github.com/jcalazan/ansible-django-stack
