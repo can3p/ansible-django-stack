@@ -6,7 +6,7 @@ user_public_keys:
 
 site_host: example.com
 certbot_admin_email: example@gmail.com # general
-git_repo: https://github.com/example/example.com.git # per project
+git_repo: git@github.com:example/example.com.git # per project
 
 # Set this flag to true so you can checkout code from a private git repository
 # which is setup with an SSH key.
