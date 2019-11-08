@@ -32,7 +32,7 @@ for configuration and hosts respectively. Please review the files and copy them 
 Contrary to parent this fork assumes that security playbook is run before anything else.
 
 ```
-ansible-playbook -i example security.yml
+ansible-playbook -i per_project/example security.yml
 ```
 
 You see example everywhere and it's not a coincidence
