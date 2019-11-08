@@ -35,6 +35,32 @@ Contrary to parent this fork assumes that security playbook is run before anythi
 ansible-playbook -i per_project/example security.yml
 ```
 
+After this you need to add db servers and after that deploy actual web servers. Please note that
+although host groups are different in inventory file, current setup makes an assumption that
+everything is on one box.
+
+```
+ansible-playbook -i per_project/example dbservers.yml
+```
+
+```
+ansible-playbook -i per_project/example webservers.yml
+```
+
+### Super user
+
+You'll need to have access to the admin and do general changes right on host. In future all these tasks
+should be converted in corresponding ansible tasks.
+
+```
+$ ssh box
+$ cd /webapps/example
+$ sudo -s -u example # check you user setting
+$ source bin/activate # for general python env
+$ source bin/postactivate # for passwords and env vars
+$ cd example
+$ ./manage.py createsuperuser
+
 You see example everywhere and it's not a coincidence
 
 ## Official intro
@@ -51,6 +77,7 @@ production Django deployments:
 - Memcached
 - Celery
 - RabbitMQ
+- Redis
 
 Default settings are stored in `roles/role_name/defaults/main.yml`.
 Environment-specific settings are in the `env_vars` directory.
