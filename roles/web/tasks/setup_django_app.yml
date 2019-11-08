@@ -23,6 +23,20 @@
   when: run_django_db_migrations is defined and run_django_db_migrations
   tags: django.migrate
 
+- name: Run npm install
+  command: npm install
+  args:
+    chdir: "{{ project_path }}"
+  when: run_django_collectstatic is defined and run_django_collectstatic
+  tags: django.collectstatic
+
+- name: Run npm run build
+  command: npm run build
+  args:
+    chdir: "{{ project_path }}"
+  when: run_django_collectstatic is defined and run_django_collectstatic
+  tags: django.collectstatic
+
 - name: Run Django collectstatic
   django_manage:
     command: collectstatic
