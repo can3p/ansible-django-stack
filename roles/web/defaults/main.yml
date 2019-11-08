@@ -36,3 +36,4 @@ django_environment:
   DATABASE_USER: "{{ db_user }}"
   DATABASE_PASSWORD: "{{ db_password }}"
   BROKER_URL: "{{ broker_url }}"
+  REDIS_URL: "localhost:6379"

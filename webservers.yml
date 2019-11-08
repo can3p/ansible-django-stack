@@ -13,6 +13,7 @@
   roles:
     - base
     - certbot
+    - redis
     - rabbitmq
     - web
     - celery
