@@ -9,7 +9,7 @@
   when: nginx_strong_dh_group is defined and nginx_strong_dh_group
 
 - name: Create the Nginx configuration file
-  template: src=nfinx.config.j2
+  template: src=nginx.config.j2
             dest=/etc/nginx/sites-available/{{ application_name }}
             backup=yes
   notify: reload nginx
