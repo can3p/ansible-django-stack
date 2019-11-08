@@ -17,6 +17,7 @@
     update_cache: "{{ update_apt_cache }}"
     state: present
     name:
+      - aptitude
       - locales
       - build-essential
       - acl
