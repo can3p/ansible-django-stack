@@ -1,0 +1,27 @@
+- name: Check if django superuser exists
+  django_manage:
+    app_path: "{{ project_path }}"
+    virtualenv: "{{ virtualenv_path }}"
+    settings: "{{ django_settings_file }}"
+    command: shell -c 'import sys; from django.contrib.auth import get_user_model; User = get_user_model(); sys.exit(0 if User.objects.filter(username="{{ django_admin_user }}").count() > 0 else 1)'
+  environment: "{{ django_environment }}"
+  register: checksuperuser
+  ignore_errors: True
+  changed_when: False
+
+- name: django create superuser
+  django_manage:
+    app_path: "{{ project_path }}"
+    virtualenv: "{{ virtualenv_path }}"
+    settings: "{{ django_settings_file }}"
+    command: "createsuperuser --noinput --username={{ django_admin_user }} --email={{ django_admin_email }}"
+  environment: "{{ django_environment }}"
+  when: checksuperuser is failed
+
+- name: django set superuser password
+  django_manage:
+    app_path: "{{ project_path }}"
+    virtualenv: "{{ virtualenv_path }}"
+    settings: "{{ django_settings_file }}"
+    command: shell -c 'import sys; from django.contrib.auth import get_user_model; User = get_user_model(); user = User.objects.get(username="{{ django_admin_user }}"); user.set_password("{{ django_admin_password }}"); user.save()'
+  environment: "{{ django_environment }}"

@@ -15,6 +15,11 @@ ssh_forward_agent: true
 project_name: example # per project
 application_name: example # per project. Why do we have both?
 
+# ensure we have a superuser there
+django_admin_user: can3p
+django_admin_password: password
+django_admin_email: dpetroff@gmail.com
+
 # Note that this PPA doesn't guarantee timely updates in case of security issues.
 # Simply remove these two vars below if you prefer to use the official PPA and
 # default Python version that came with your Linux distro.

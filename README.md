@@ -47,21 +47,10 @@ ansible-playbook -i per_project/example dbservers.yml
 ansible-playbook -i per_project/example webservers.yml
 ```
 
-### Super user
+Superuser is created automatically with `django_admin_user`, `django_admin_email`
+and `django_admin_password` credentials.
 
-You'll need to have access to the admin and do general changes right on host. In future all these tasks
-should be converted in corresponding ansible tasks.
-
-```
-$ ssh box
-$ cd /webapps/example
-$ sudo -s -u example # check you user setting
-$ source bin/activate # for general python env
-$ source bin/postactivate # for passwords and env vars
-$ cd example
-$ ./manage.py createsuperuser
-
-You see example everywhere and it's not a coincidence
+You see example everywhere and it's not a coincidence.
 
 ## Official intro
 

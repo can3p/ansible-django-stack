@@ -33,3 +33,7 @@
   when: run_django_collectstatic is defined and run_django_collectstatic
   notify: restart application
   tags: django.collectstatic
+
+- name: Ensure a super user is set up
+  include: setup_django_superuser.yml
+  tags: django.superuser
