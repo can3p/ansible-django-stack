@@ -34,6 +34,7 @@ For example:
 - superuser is automatically created
 - Runs django cookiecutter (didn't check with a clean setup)
 - Additional step to run npm build to build static assets
+- Basic auth for the service if needed
 
 Breaking changes expected, use on your own risk.
 

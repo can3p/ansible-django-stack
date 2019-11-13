@@ -4,6 +4,11 @@
   apt: name=nginx update_cache={{ update_apt_cache }} state=present
   tags: packages
 
+- name: Install python-passlib for htpasswd
+  apt: name=python3-passlib update_cache={{ update_apt_cache }} state=present
+  when: basic_auth_enabled
+  tags: packages
+
 - name: Ensure that a strong Diffie-Hellman group is used
   command: openssl dhparam -out /etc/ssl/certs/dhparams.pem 2048 creates=/etc/ssl/certs/dhparams.pem
   when: nginx_strong_dh_group is defined and nginx_strong_dh_group
@@ -12,6 +17,14 @@
   template: src=nginx.config.j2
             dest=/etc/nginx/sites-available/{{ application_name }}
             backup=yes
+  notify: reload nginx
+
+- name: Create the Nginx htpasswd file file
+  htpasswd:
+    path: '/etc/nginx/{{ application_name }}.htpasswd'
+    name: '{{ basic_auth_user }}'
+    password: '{{ basic_auth_password }}'
+  when: basic_auth_enabled
   notify: reload nginx
 
 - name: Ensure that the default site is disabled

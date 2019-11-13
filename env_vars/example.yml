@@ -20,6 +20,11 @@ django_admin_user: can3p
 django_admin_password: password
 django_admin_email: dpetroff@gmail.com
 
+# guard site with basic auth
+basic_auth_enabled: true
+basic_auth_user: example
+basic_auth_password: example_password
+
 # Note that this PPA doesn't guarantee timely updates in case of security issues.
 # Simply remove these two vars below if you prefer to use the official PPA and
 # default Python version that came with your Linux distro.
