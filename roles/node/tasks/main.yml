@@ -6,4 +6,5 @@
     name:
       - nodejs
       - npm
+  when: node_build_enabled
   tags: nodejs

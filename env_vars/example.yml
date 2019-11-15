@@ -25,6 +25,9 @@ basic_auth_enabled: true
 basic_auth_user: example
 basic_auth_password: example_password
 
+# if we want to build static with node
+node_build_enabled: true
+
 # Note that this PPA doesn't guarantee timely updates in case of security issues.
 # Simply remove these two vars below if you prefer to use the official PPA and
 # default Python version that came with your Linux distro.
