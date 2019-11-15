@@ -1,5 +1,6 @@
 ufw_allowed_ports:
   - 22
   - 443
+  - 80 # this port is needed to be open for a certbot to work
 
 shell: "/bin/bash"
