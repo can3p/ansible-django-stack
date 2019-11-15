@@ -35,6 +35,7 @@ For example:
 - Runs django cookiecutter (didn't check with a clean setup)
 - Additional step to run npm build to build static assets
 - Basic auth for the service if needed
+- Node.js is optionally installed to run `npm build` in order to get fancy static
 
 Breaking changes expected, use on your own risk.
 
@@ -129,6 +130,7 @@ The security module performs several basic server hardening tasks. Inspired by
   and use a password for `sudo` access)
 - Restricts SSH access to the new user specified by the `server_user` variable
 - Deletes the `root` password
+- Sets up a firewall to keep only ports 22, 443 and 80 (for certbot) open.
 
 
 ### Separate notes
