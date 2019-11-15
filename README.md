@@ -39,6 +39,28 @@ For example:
 
 Breaking changes expected, use on your own risk.
 
+## Notes
+
+This ansible setup doesn't do anything to setup emails, not even passes variables to django.
+Hence a fresh django-cookiecutter project will fail to deploy. What you need to do is to comment
+out a section related to anymail, like this:
+
+```python
+# Anymail (Mailgun)
+# ------------------------------------------------------------------------------
+# https://anymail.readthedocs.io/en/stable/installation/#installing-anymail
+# INSTALLED_APPS += ["anymail"]  # noqa F405
+# EMAIL_BACKEND = "anymail.backends.mailgun.EmailBackend"
+# https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
+# ANYMAIL = {
+    # "MAILGUN_API_KEY": env("MAILGUN_API_KEY"),
+    # "MAILGUN_SENDER_DOMAIN": env("MAILGUN_DOMAIN"),
+    # "MAILGUN_API_URL": env("MAILGUN_API_URL", default="https://api.mailgun.net/v3"),
+# }
+```
+
+If you want to have it working and fixed, consider sending a merge request
+
 ## Variables
 
 Check [example.yml](env_vars/example.yml) and [per_project/example](per_project/example) files
