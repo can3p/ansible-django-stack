@@ -74,6 +74,10 @@ celery_num_workers: 2
 # Application settings.
 django_settings_file: "config.settings.production"
 
+# Email settings:
+mailjet_api_key: "123"
+mailjet_secret_key: "456"
+
 # prefix of admin url pages
 django_admin_url: "akr2icmg1n8%z^3fe3c+)5d0(t^cy-2_25rrl35a7@!scna^1#"
 

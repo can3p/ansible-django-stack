@@ -41,7 +41,7 @@ Breaking changes expected, use on your own risk.
 
 ## Notes
 
-This ansible setup doesn't do anything to setup emails, not even passes variables to django.
+This setup supports only mailjet env vars although other ones are trivial to add.
 Hence a fresh django-cookiecutter project will fail to deploy. What you need to do is to comment
 out a section related to anymail, like this:
 
