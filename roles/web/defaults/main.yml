@@ -35,7 +35,7 @@ django_environment:
   MEDIA_ROOT: "{{ nginx_media_dir }}"
   STATIC_ROOT: "{{ nginx_static_dir }}"
   DATABASE_URL: "postgres://{{ db_user }}:{{ db_password }}@localhost/{{ db_name }}"
-  REDIS_URL: "localhost:6379"
+  REDIS_URL: "redis://localhost:6379"
   CELERY_BROKER_URL: "{{ broker_url }}"
   MAILJET_API_KEY: "{{ mailjet_api_key }}"
   MAILJET_SECRET_KEY: "{{ mailjet_secret_key }}"
