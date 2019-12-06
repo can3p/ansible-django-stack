@@ -163,6 +163,12 @@ Psql access on the db box:
 $ PGPASSWORD=password psql -h localhost -U dbname
 ```
 
+Rebuild nginx config:
+
+```
+$ ansible-playbook -i per_project/example webservers.yml -t nginx-config
+```
+
 ## TODO:
 
 * Email settings

@@ -18,6 +18,7 @@
             dest=/etc/nginx/sites-available/{{ application_name }}
             backup=yes
   notify: reload nginx
+  tags: nginx-config
 
 - name: Create the Nginx htpasswd file file
   htpasswd:
